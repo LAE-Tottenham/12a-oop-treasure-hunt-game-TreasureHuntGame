@@ -201,8 +201,8 @@ print("the voice fades...but its message still echoes in your ears.... a cold sh
 print("The warning only pushes you to move forward. You can’t let fear hold you back.")
 print()
 input31=" "
-while input32 !="a":
-    input32=input("press a to continue")
+while input31 !="a":
+    input31=input("press a to continue")
 print("you decide to look around the house, and a dull fog wraps around its decaying structure, ")
 print("The staircase rises steeply, its steps covered in dust, and at the top, a heavy door looms like a barrier between you and the unknown.")
 print("you notice that your only path is to go up the stairs...")
@@ -245,6 +245,7 @@ print("you can now enter the secret library")
 
 input4=" "
 doorunlocked=False
+nextroom=" "
 while input4 !="c" and input4 != "d":
     print("press a to inspect the bookshelves.")
     print("press b to ask the old man for more information.")
@@ -268,7 +269,7 @@ while input4 !="c" and input4 != "d":
         print()
         print("The old man asks in a low, mysterious tone: 'The more of me there is, the less you see. What am I?'")
         correctanswer=False
-        while correctanswer==False
+        while correctanswer==False:
             player_answer = input("enter your answer: ").lower()
             if player_answer == "hint":
                print("The old man’s eyes glimmer as if amused by your request. 'Very well... Here is your hint.'")
@@ -290,11 +291,11 @@ while input4 !="c" and input4 != "d":
         input42=" "
         while input42 != "a":
             input42=input("choose the correct book")
-            if input42 ="b":
+            if input42 =="b":
                 print("you inspect the book but dont find anything useful...try again")
-            elif input42 ="c":
+            elif input42 =="c":
                 print("incorrect.try again")
-            elif input42 ="a":
+            elif input42 =="a":
                 print("'The key to the door is not where the light shines brightest, but where the shadows hide secrets.'")
                 print("you walk towards the darkest corner of the library, you find a lever and pull it")
                 print("suddenly you hear the sound of doors open. you realsie that you have two choices:The twisted forest or the abandoned castle")
@@ -304,7 +305,7 @@ while input4 !="c" and input4 != "d":
     elif input4 == "c":
         nextroom="twisted forest"
     elif input4 == "d":
-    nextroom="abandoned castle"
+        nextroom="abandoned castle"
     elif input4 == "m" and hasmap==True:
         print(openmap())
     else:
