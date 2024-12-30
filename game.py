@@ -62,7 +62,7 @@ def talktonpc1():
     print("welcome to the maze of secrets")
     print("your task is to get through all the rooms and collect the magical stone to escape")
     print("be careful, there are monsters that can kill you, if you die you die in real life "+"\U0001F608")
-    print("dont worry, you can find weapons ti help you defeat the monsters")
+    print("dont worry, you can find weapons to/ help you defeat the monsters")
 
 def solve_riddle():
     print("You approach the cold, moss-covered wall.")
@@ -98,6 +98,9 @@ backpack=[]
 s=" "
 while s!="s":
     s=input("enter s to start ")
+#--------------------------------------------------------------------------------
+################################    room 1   #####################################
+
 
 print("You wake up in a cold, shadowy cave")
 print("In the distance, a folded parchment lies on the ground, and a mysterious figure looms in the darkness.")
@@ -151,10 +154,12 @@ while input2!="c":
         room2.enterroom()        
 
 #-------------------------------------------------------------------------------------------
+#####################################   room 2   ##############################################
+
 print()    
 print("You step cautiously into the abandoned mine, the air is cold and stale and the ground is covered with jagged rocks ")
 print("you spot strange symbols carved into the wall, faint but unmistakably deliberate.")
-print("As you explore, your gaze catches something glinting on the ground, shiny object buried in the dirt.-its a golden sword!")
+print("As you explore, your gaze catches something glinting on the ground,a shiny object buried in the dirt.-its a golden sword!")
 x=" "
 while x!="a":
     x=input("press a to pick up the sword")
@@ -185,17 +190,25 @@ while input3!="b":
 
 
 
-#------------------------------------------------------------------------------------------
+#------------------------------------------------------------------------------------------------------
+####################################    room 3   ###############################################
+
 print("you have entered the haunted house")
 print("an eerie voice whispers behind you, filling you with a sense of unease")
 print("impressive..... You solved the riddle. But dont think that this is over! Every step you take brings you closer to your doom. I will be waiting in the darkness, watching as you struggle. So enjoy this small triumph, for it will be your last. MWAHAHAHAHAHAHAH")
 print()
-print("the voice fades...but its message still echoes in your ears.... a cold shiver runns down your spine")
+print("the voice fades...but its message still echoes in your ears.... a cold shiver runs down your spine")
 print("The warning only pushes you to move forward. You can’t let fear hold you back.")
 print()
+input31=" "
+while input32 !="a":
+    input32=input("press a to continue")
 print("you decide to look around the house, and a dull fog wraps around its decaying structure, ")
 print("The staircase rises steeply, its steps covered in dust, and at the top, a heavy door looms like a barrier between you and the unknown.")
 print("you notice that your only path is to go up the stairs...")
+input32=" "
+while input32 !="a":
+    input32=input("enter a to ascend the stairs")
 
 def room3_monster():
     print("A terrifying creature emerges from the shadows! Its massive form towers over you, with glowing red eyes and sharp claws gleaming in the dim light.")
@@ -224,3 +237,75 @@ def room3_monster():
 
 output=room3_monster()
 print(output)
+
+print("you can now enter the secret library")
+
+#------------------------------------------------------------------------------------------------------
+###################################   room 4    ##############################################################
+
+input4=" "
+doorunlocked=False
+while input4 !="c" and input4 != "d":
+    print("press a to inspect the bookshelves.")
+    print("press b to ask the old man for more information.")
+    if doorunlocked==True:
+        print("press c to enter the twisted forest")
+        print("press d to enter the abandoned castle")
+    print("press m to look at map")
+    input4=" "
+    input4=input()
+    if input4 == "a":
+        print("You walk towards the bookshelves and begin scanning the spines of the many books")
+        print("You search the shelves and spot a small vial tucked behind an old book. It's a glowing green potion, labeled 'Essence of strength'.")
+        input41=" "
+        while input41 !="a":
+            input41=input("press a to pick up the potion")
+        print("You now have the Essence of strength potion!")
+    
+    elif input4 == "b":
+        print("'To proceed, you must solve my riddle,' the old man says, his lips curling into a cryptic smile.")
+
+        print()
+        print("The old man asks in a low, mysterious tone: 'The more of me there is, the less you see. What am I?'")
+        correctanswer=False
+        while correctanswer==False
+            player_answer = input("enter your answer: ").lower()
+            if player_answer == "hint":
+               print("The old man’s eyes glimmer as if amused by your request. 'Very well... Here is your hint.'")
+               print("Hint: I am something that grows as the light fades.")
+            elif player_answer == "darkness":
+                print("He nods slowly, his voice echoing, 'You have answered correctly.'")
+                correctanswer=True
+            else:
+                print("incorrect,  Think carefully.'")
+    
+        print("With the riddle solved, you approach the old man.")
+        print("'Now,' he whispers, his voice barely audible, 'Look at the bookshelf ahead. Four books glow with an eerie light. Choose wisely.'")
+        print("He gestures towards a shelf that holds four glowing books. The titles read:")
+        print("a. 'The Realm of Darkness'")
+        print("b. 'The Lost Echoes'")
+        print("c. 'The Forbidden spellbook'")
+        print("d. 'tales of an evil wizard'")  
+    
+        input42=" "
+        while input42 != "a":
+            input42=input("choose the correct book")
+            if input42 ="b":
+                print("you inspect the book but dont find anything useful...try again")
+            elif input42 ="c":
+                print("incorrect.try again")
+            elif input42 ="a":
+                print("'The key to the door is not where the light shines brightest, but where the shadows hide secrets.'")
+                print("you walk towards the darkest corner of the library, you find a lever and pull it")
+                print("suddenly you hear the sound of doors open. you realsie that you have two choices:The twisted forest or the abandoned castle")
+                doorunlocked=True
+            else:
+                print("try again")
+    elif input4 == "c":
+        nextroom="twisted forest"
+    elif input4 == "d":
+    nextroom="abandoned castle"
+    elif input4 == "m" and hasmap==True:
+        print(openmap())
+    else:
+        print("try again")   
