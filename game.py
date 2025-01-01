@@ -37,7 +37,7 @@ room4=rooms("secret library")
 room5=rooms("dark room")
 room6=rooms("deserted castle")
 room7=rooms("ancient treasury")
-room8=rooms("mysterious cottage")
+room8=rooms("lair of death")
 
 
 goldensword=object("golden sword")
@@ -55,9 +55,32 @@ mysteriousbook=object("mysterious book")
 
 #--------------------------------------------------------------------------------
 def openmap():
-    print("map")
+    print()
+    print("#-------'#######---###  ----  ######  --___----######_--  --####___--- ")
+    print("#-       ---                                       ---          ---")
+    print(" ##               ~~~map of the maze of secrets~~~                      l")
+    print("##        ~~use with caution~~~                                          |")
+    print("|                                     ####____ _____ ----____--_        l")
+    print("|                                     #           |     --    |        l")
+    print("|                                     #           |   lair    |        l")
+    print("|                                     |   castle  |    of    |         l")
+    print("|                                     l           |   death   l        l")
+    print("  |                                   l           l           |       l")
+    print("  |         ##____________-------------________###---------__ #        l")
+    print("  #      |         l         |          l          #          l        l")
+    print("  #      #          |          | haunted l          #         |        l")
+    print("  #      l    cave   |  mine   |  house  l  library l  forest |       l")
+    print(" #       #          |         l          l          |          #        l")
+    print(" ##      l          #         l          l          |           #       l")
+    print(" l       ####--------#  _ ____l  ___  _l  ____    |## ________###        l")
+    print("l                                                                        l")
+    print("  l                                                                      l")
+    print("l                                                                         l")
+    print("#             ___                           __              ______##     l")
+    print("--###______--##__#####___-  ####  ---######-#-   ----___==######----    -- ")
+    print()
 
-map=(openmap())    
+map=openmap()  
 
 def talktonpc1():
     print()
@@ -126,19 +149,20 @@ while input1!="c":
     elif input1=="b":
         print()
         print("you have found the map")
+        print("You feel a sense of hope rise within you as you realize this map might be your key to escaping.")
         print("the map is in your backpack, remember you can only hold 6 items at once")
         backpack.append("map")
         hasmap=True
     elif input =="c" and completed==True:
         ("you can now enter the abandoned mine")   
     elif input1=="m":
-        print(map)    
+        print(openmap())    
     else:
         print("try again")
     print()
     print("press a to talk to the mysterious figure")
     print("press b to pick up the parchment")
-    if completed==True:
+    if completed==True and hasmap==True:
         print("press c to go to the next room")
     if hasmap==True:
         print("press m to open map")    
@@ -153,7 +177,7 @@ while input1!="c":
 print()
 input21=" "
 while input21!="a":
-    input21=input("press a to continue")
+    input21=input("press a to continue ")
 print()    
 print("You step cautiously into the abandoned mine, the air is cold and stale and the ground is covered with jagged rocks ")
 print("you spot strange symbols carved into the wall, faint but unmistakably deliberate.")
@@ -185,7 +209,9 @@ while input23!="b":
         print()
         print("you need a key to open the door")
         print()
-        input23=" "     
+        input23=" "  
+    elif input23=="m":
+        print(openmap())       
     else:
         input23=" "
 
@@ -200,7 +226,7 @@ print()
 print("you have entered the haunted house")
 input33=" "
 while input33 !="a":
-    input33=input("press a to continue")
+    input33=input("press a to continue ")
 print()
 print("an eerie voice whispers behind you, filling you with a sense of unease....")
 print()
@@ -211,15 +237,16 @@ print("The warning only pushes you to move forward. You can’t let fear hold yo
 print()
 input31=" "
 while input31 !="a":
-    input31=input("press a to continue")
+    input31=input("press a to continue ")
 print()    
 print("you decide to look around the house, a dull fog wraps around its decaying structure, ")
 print("Piles of bones and skeletons are scattered across the floor, some leaning against the crumbling walls")
 print("The staircase rises steeply, its steps covered in dust, and at the top, a heavy door looms like a barrier between you and the unknown.")
 print("you notice that your only path is to go up the stairs...")
+print()
 input32=" "
 while input32 !="a":
-    input32=input("enter a to ascend the stairs ")
+    input32=input("enter a to go up the stairs ")
 
 
 def room3_monster():
@@ -259,6 +286,10 @@ print()
 #------------------------------------------------------------------------------------------------------
 ###################################   room 4    ##############################################################
 
+input44=" "
+while input44 !="a":
+    input44=input("press a to continue ")
+
 print(" Ancient books line the dusty shelves, their pages yellowed and brittle. The air is thick with an unsettling silence,.")
 print(" In the dim light, a shadowy figure stands motionless, an old man cloaked in tattered robes")
 print()
@@ -281,9 +312,11 @@ while input4 !="c" and input4 != "d":
         while input41 !="a":
             input41=input("press a to pick up the potion ")
         print("You now have the Essence of strength potion!")
-    
+        print()
+    elif input4=="m":
+        print(openmap())
     elif input4 == "b":
-        print("'To proceed, you must solve my riddle,' the old man says, his lips curling into a cryptic smile.")
+        print("'To proceed, you must solve my riddle,' the old man says, his lips curling into asmile.")
 
         print()
         print("The old man asks in a low, mysterious tone: 'The more of me there is, the less you see. What am I?'")
@@ -298,7 +331,7 @@ while input4 !="c" and input4 != "d":
                 print()
                 input43=" "
                 while input43 !="a":
-                    input43=input("press a to continue")
+                    input43=input("press a to continue ")
                 correctanswer=True
             else:
                 print("incorrect,  Think carefully.'")
@@ -340,39 +373,41 @@ while input4 !="c" and input4 != "d":
     elif input4 == "d":
         nextroom="abandoned castle"
     elif input4 == "m" and hasmap==True:
-        print(openmap())
+        print(map)
     else:
         print("try again")   
 
 #----------------------------------------------------------------------------------------------------        
 ####################################    room 5    ####################################################
-
-def twisted_forest():
+def twisted_forest(backpack):
     print()
     print("You have entered the Twisted Forest.")
     print()
     print("The air is thick with mist, and the trees seem to whisper among themselves.")
     print("The forest is dense and foreboding, with multiple paths leading deeper into the woods.")
     print("You feel an unsettling presence around you...")
+    print()
 
     input51 = " "
     while input51 != "a" and input51 != "b" and input51 != "c":
         print()
         print("What would you like to do?")
-        print("a. Follow the sound of distant drums.")
-        print("b. Examine a glowing flower by your feet.")
-        print("c. Head down one of the shadowy paths.")
-        input51 = input().lower()
+        print("a. Follow the sound of distant whispers")
+        print("b. Examine a glowing flower by your feet")
+        print("c. Head down one of the shadowy paths")
+        input51 = input()
 
     if input51 == "a":
-        print("\nYou follow the sound of distant drums, deeper into the forest. The air grows colder.")
-        print("Suddenly, a large creature with glowing eyes appears in front of you!")
+        print()
+        print("You follow the sound of the voices, deeper into the forest. The air grows colder")
+        print("you suddenly hear a low intimidating wisper, and turn around but theres nothing there, you decide the venture further")
+        print("Suddenly, a large creature with glowing eyes and broad wings appears in front of you!")
         print("You must choose what to do:")
         input52 = " "
         while input52 != "a" and input52 != "b":
             print("a. Try to communicate with the creature.")
             print("b. Fight the creature with your sword.")
-            input52 = input().lower()
+            input52 = input()
 
         if input52 == "a":
             print()
@@ -386,9 +421,10 @@ def twisted_forest():
     elif input51 == "b":
         print()
         print("You bend down and examine the glowing flower. It seems to be magical!")
-        print("As you touch it, a small vial of liquid appears in your hand. You now possess a potion of healing.")
-        backpack.append("healing potion")
+        print("As you touch it,a metallic shield appears. You now possess the shield of protection.")
+        backpack.append("shield")
         print("The flower disappears, and you are left with a sense of wonder.")
+        backpack.append("shield")
     
     elif input51 == "c":
         print()
@@ -399,112 +435,128 @@ def twisted_forest():
         
         input53 = " "
         while input53 != "a" and input53 != "b":
-            input53 = input("Which path will you choose? ").lower()
+            input53 = input("Which path will you choose? ")
 
         if input53 == "a":
-            print("\nYou follow the light and find yourself in a clearing, with a beautiful, ancient tree in the center.")
+            print()
+            print("You follow the light and find yourself in a clearing, with a beautiful, ancient tree in the center.")
+            print("you hear a faint whisper, and turn around but theres nothing there, you decide the venture further-you must keep going!")
             print("There is an inscription on the tree that reads: 'To find the heart of the forest, you must leave no path untaken.'")
             print("You feel this is an important clue.")
         elif input53 == "b":
             print()
             print("You head into the dark cave. It’s eerily silent, and the air is cold.")
+            print("you hear a faint whisper, and turn around but theres nothing there, you decide the venture further")
             print("Inside, you find a hidden chest! It contains a rare gemstone that could help you later.")
             backpack.append("rare gemstone")
 
     print()
     print("You've made it through this part of the Twisted Forest. The path ahead is still unclear...")
-    return
-
-if nextroom=="twisted forest":
-    x=twisted_forest()
+    print("you turn to continue exploring but a door appears infront of you, its intricate engravings pull you closer....")
     print()
+    print("you reach your hand out to open it, but suddenly the forest fades into darkness...")
+    print()
+    return  
 
 #------------------------------------------------------------------------------------------------------
 #################################     room 6    #######################################################
-def ancient_castle():
-    global strength_potion
+input63=" "
+def ancient_castle(backpack):
 
-    print("\nYou step into the ancient abandoned castle.")
+    print()
+    print("You step into the ancient abandoned castle.")
+    input63=" "
+    while input63 !="a":
+        input63=input("press a to continue ")
+
+    print()
     print("The walls are covered in dust, and cobwebs hang from the ceilings. A cold, eerie wind whispers through the halls.")
-    print("You hear distant sounds of movement. There are two staircases ahead.")
+    print("you hear a faint whisper, and turn around but theres nothing there, you decide the venture further")
+    print("There are two staircases ahead.")
     print("One leads upward, to the unknown heights of the castle. The other leads down, where the air smells damp and musty.")
 
-    display_stats()  # Display current stats and inventory
 
-    # First choice: Upstairs or downstairs
     input61 = " "
     while input61 != "a" and input61 != "b":
-        print("\nWhat would you like to do?")
+        print()
+        print("What would you like to do?")
         print("a. Go upstairs.")
         print("b. Go downstairs.")
-        input61 = input().lower()
+        input61 = input()
 
     if input61 == "a":
-        print("\nYou decide to go upstairs. The staircase creaks beneath your weight, and the air grows colder with every step.")
+        print("You decide to go upstairs. The staircase creaks beneath your weight, and the air grows colder with every step.")
         print("At the top, you find a large, dusty room with old furniture covered in sheets.")
         print("Suddenly, a loud noise from behind you makes you turn around!")
         print("A goblin appears, brandishing a rusted sword!")
 
     elif input61 == "b":
-        print("\nYou decide to go downstairs. The air smells damp, and you can hear faint dripping sounds.")
+        print()
+        print("You decide to go downstairs. The air smells damp, and you can hear faint dripping sounds.")
         print("In the corner, you spot an old shield leaning against the wall. You approach it carefully and add it to your inventory.")
         print("You hear a noise coming from the darkness ahead. Suddenly, a goblin jumps out of the shadows, wielding a rusted sword!")
 
         
-        backpack.append("shield")
+
+        hasshield=True
         print("You now have a shield!")
 
-    # Player automatically enters battle with the goblin
-    print("\nThe goblin snarls and charges at you! You have to fight it!")
+    print()
+    print("The goblin snarls and charges at you! You have to fight it!")
     print("The goblin's attacks are fierce, and it strikes you with a couple of quick blows.")
     
-    # Check if the player has a shield for defense
     if "shield" in backpack:
         print("You block one of the goblin's attacks with your shield, but the goblin is still strong!")
     else:
         print("You don't have a shield, and the goblin's attack hits you hard!")
 
-    # The player is losing and needs to use the strength potion
-    print("\nYou're on the verge of losing the battle! Your strength is waning...")
+    print("You're on the verge of losing the battle! Your strength is waning...")
     print("You remember the strength potion you have in your backpack.")
-    
-    if "strength potion" not in backpack:
-        print("\nYou don't have a strength potion. The goblin strikes again and you fall!")
-        print("Game over!")
-        exit(0)
-        
-
-    
-    strength_potion = True
-    print("\nYou drink the strength potion and feel a surge of power! Your strength is renewed.")
+    print()
+    print("You drink the strength potion and feel a surge of power! Your strength is renewed.")
     print("You push back the goblin, overwhelming it with your newfound strength.")
 
-    print("\nWith your renewed power, you defeat the goblin and stand victorious!")
-    
-    # After the goblin is defeated, everything goes black
-    print("\nEverything goes dark...")
+    print()
+    print("With your renewed power, you defeat the goblin and stand victorious!")
 
-    # You find yourself in an Ancient Treasury
-    print("\nYou awaken in a dimly lit room. The walls are lined with glittering treasures: gold coins, jewels, and ancient artifacts.")
+    print()
+    print("Everything goes dark...")
+
+    print()
+    print("You awaken in a dimly lit room. The walls are lined with glittering treasures: gold coins, jewels, and ancient artifacts.")
     print("You can hardly believe your eyes. This must be the Ancient Treasury, long forgotten by time.")
     print("The air is thick with the scent of old riches, but there’s something else... an eerie silence fills the room.")
 
-    # The player can now explore the treasury
+
     input62 = " "
     while input62 != "a" and input62 != "b":
-        print("\nWhat would you like to do?")
+        print()
+        print("What would you like to do?")
         print("a. Examine the treasure in front of you.")
         print("b. Search the back of the room for hidden secrets.")
-        input62 = input().lower()
+        input62 = input()
 
     if input62 == "a":
-        print("\nYou examine the treasure before you, but as you touch the coins, they crumble to dust!")
+        print()
+        print("You examine the treasure before you, but as you touch the coins, they crumble to dust!")
         print("It seems these treasures are not meant for mortal hands.")
     elif input62 == "b":
-        print("\nYou approach the back of the room, carefully searching for anything that might hold more value.")
+        print()
+        print("You approach the back of the room, carefully searching for anything that might hold more value.")
         print("After moving aside some old crates, you find a hidden door that leads to a deeper part of the castle.")
         print("This must be where the true secrets of the castle lie!")
+    
+    print()
+    print("Your journey has only just begun. What awaits you beyond the hidden door is unknown...")
+    print("you reach your hand out to open the door when everything goes dark.....")
 
-    print("\nYour journey has only just begun. What awaits you beyond the hidden door is unknown...")
 
-print("Welcome to the Ancient Abandoned Castle!")
+
+if nextroom=="twisted forest":
+    x=twisted_forest()
+    print()
+elif nextroom=="abandoned castle":
+    x=ancient_castle(backpack)
+    print(x)    
+
+#-------------------------------------------------------------------------------------------------------------------
