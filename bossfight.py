@@ -79,11 +79,36 @@ print("before you can react, it extends it long arm infront of it, and effortles
 print()
 print("you dont dodge it in time!")
 print("you take 5 damage")
+playerhealth -= 5
+print()
+print(f"Your health: {playerhealth}")
+print(f"FinalBoss's health: {bosshealth}")
+print()
 input7=" "
 while input7!="a":
     input7=input("press a to continue ")
 
-    
+print("the monster laughs at its victory, but you know this is far from over, you sieze tis oppurtnity to:")
+print("a.attack by throwing a brick towards the monster")    
+print("b.prepare to dodge the next attack")
+print("panic and do nothing")
+option=input()
+if option=="a":
+    print("the demon is distracted so it doesnt anticipate this attack! however the effects are only weak.")
+    bosshealth -= 3
+    print("the boss takes 3 damage")
+    print()
+    print(f"Your health: {playerhealth}")
+    print(f"FinalBoss's health: {bosshealth}")
+    print()
+elif option=="b":
+    print("the monster quietly laughs to itself untill it causes another boulder to accelerate towards you")
+    print("luckily you manage to dodge it right on time!")
+else:
+    print("unfortulately your lack of appropriate resonse causes you to fall vinctim to the next attack!!")
+    print("luckily you manage to dodge it right on time!")
+
+
 
 def playerturn(backpack):
     global playerhealth, bosshealth
