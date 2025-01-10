@@ -80,21 +80,24 @@ def openmap():
     print("--###______--##__#####___-  ####  ---######-#-   ----___==######----    -- ")
     print()
 
-map=openmap()  
+#map=openmap()  
 
 def talktonpc1():
     print()
     print("welcome to the maze of secrets")
-    print("your task is to get through all the rooms and collect the magical stone to escape")
+    print("your task is to get through all the rooms, complete puzzles collect objects to help you escape")
     print("be careful, there are monsters that can kill you, if you die you die in real life "+"\U0001F608")
-    print("dont worry, you can find weapons to/ help you defeat the monsters")
+    print("dont worry, you can find weapons to help you defeat the monsters")
+    print()
+    input2345=input("press a to continue ")
+    print("the figures sinister message fills you with a sense of unease but you must ecape!")
 
 def solve_riddle():
     print()
     print("You approach the cold, moss-covered wall.")
     print("Etched into the stone is a riddle, faint but legible:")
     print()
-    print("\"I have keys but open no locks. I have space but no room. You can enter, but you can’t go outside. What am I?\"")
+    print("I have keys but open no locks. I have space but no room. You can enter, but you can’t go outside. What am I?\"")
     print()
 
     correct_answer=False
@@ -104,7 +107,7 @@ def solve_riddle():
         answer = input("enter the answer: ")
         answer=answer.lower()
         if answer == "keyboard":
-            print("The wall rumbles and a hidden compartment opens, revealing a rusty key!")
+            print("The wall rumbles and a hidden compartment opens, revealing a rusty key 🔑")
             key = True
             correct_answer = True
         elif answer == "hint":
@@ -131,7 +134,7 @@ while s!="s":
 
 
 print("You wake up in a cold, shadowy cave")
-print("In the distance, a folded parchment lies on the ground, and a mysterious figure looms in the darkness.")
+print("In the distance, a folded parchment lies on the ground, and a mysterious figure looms in the darkness....")
 
 hasmap=False
 completed=False
@@ -148,7 +151,7 @@ while input1!="c":
         completed=True
     elif input1=="b":
         print()
-        print("you have found the map")
+        print("you have found the map 📜")
         print("You feel a sense of hope rise within you as you realize this map might be your key to escaping.")
         print("the map is in your backpack, remember you can only hold 6 items at once")
         backpack.append("map")
@@ -157,7 +160,7 @@ while input1!="c":
         ("you can now enter the abandoned mine")   
     elif input1=="m":
         print(openmap())    
-    else:
+    elif input1 !="c":
         print("try again")
     print()
     print("press a to talk to the mysterious figure")
@@ -177,16 +180,17 @@ while input1!="c":
 print()
 input21=" "
 while input21!="a":
-    input21=input("press a to continue ")
+    input21=input("press a to continues ")
 print()    
-print("You step cautiously into the abandoned mine, the air is cold and stale and the ground is covered with jagged rocks ")
+print("You step cautiously into the abandoned mine ⛏️, the air is cold and stale and the ground is covered with jagged rocks ")
 print("you spot strange symbols carved into the wall, faint but unmistakably deliberate.")
 print("As you explore, your gaze catches something glinting on the ground,a shiny object buried in the dirt.-its a golden sword!")
 print()
 x=" "
 while x!="a":
     x=input("press a to pick up the sword ")
-print("you have picked up the sword")
+print("you have picked up the sword🗡️")
+print("you feel relieved, knowing you have a chance of defending yourself in this place...")
 backpack.append("sword")
 print()
 
@@ -226,7 +230,7 @@ print()
 print("you have entered the haunted house")
 input33=" "
 while input33 !="a":
-    input33=input("press a to continue ")
+    input33=input("press a to continue  ")
 print()
 print("an eerie voice whispers behind you, filling you with a sense of unease....")
 print()
@@ -237,7 +241,7 @@ print("The warning only pushes you to move forward. You can’t let fear hold yo
 print()
 input31=" "
 while input31 !="a":
-    input31=input("press a to continue ")
+    input31=input("press a to continue  ")
 print()    
 print("you decide to look around the house, a dull fog wraps around its decaying structure, ")
 print("Piles of bones and skeletons are scattered across the floor, some leaning against the crumbling walls")
@@ -279,7 +283,7 @@ def room3_monster():
 output=room3_monster()
 print(output)
 
-print("you can now enter the secret library")
+print("you can now enter the secret library 📚")
 print()
 
 
@@ -288,7 +292,7 @@ print()
 
 input44=" "
 while input44 !="a":
-    input44=input("press a to continue ")
+    input44=input("press a to continue  ")
 
 print(" Ancient books line the dusty shelves, their pages yellowed and brittle. The air is thick with an unsettling silence,.")
 print(" In the dim light, a shadowy figure stands motionless, an old man cloaked in tattered robes")
@@ -300,8 +304,8 @@ while input4 !="c" and input4 != "d":
     print("press a to inspect the bookshelves.")
     print("press b to ask the old man for more information.")
     if doorunlocked==True:
-        print("press c to enter the twisted forest")
-        print("press d to enter the abandoned castle")
+        print("press c to enter the twisted forest🌲")
+        print("press d to enter the abandoned castle🏰s")
     print("press m to look at map")
     input4=" "
     input4=input()
@@ -331,7 +335,7 @@ while input4 !="c" and input4 != "d":
                 print()
                 input43=" "
                 while input43 !="a":
-                    input43=input("press a to continue ")
+                    input43=input("press a to continue  ")
                 correctanswer=True
             else:
                 print("incorrect,  Think carefully.'")
@@ -445,7 +449,7 @@ def twisted_forest(backpack):
             print("You feel this is an important clue.")
         elif input53 == "b":
             print()
-            print("You head into the dark cave. It’s eerily silent, and the air is cold.")
+            print("You head into the dark cave. It ’s eerily silent, and the air is cold.")
             print("you hear a faint whisper, and turn around but theres nothing there, you decide the venture further")
             print("Inside, you find a hidden chest! It contains a rare gemstone that could help you later.")
             backpack.append("rare gemstone")
@@ -467,7 +471,7 @@ def ancient_castle(backpack):
     print("You step into the ancient abandoned castle.")
     input63=" "
     while input63 !="a":
-        input63=input("press a to continue ")
+        input63=input("press a to continue  ")
 
     print()
     print("The walls are covered in dust, and cobwebs hang from the ceilings. A cold, eerie wind whispers through the halls.")
@@ -564,7 +568,7 @@ import random
 
 input7=" "
 while input7!="a":
-    input7=input("press a to continue ")
+    input7=input("press a to continue  ")
 print()    
 print("You slowly open your eyes. The world around you is shrouded in darkness. You can barely make out your surroundings.")
 print()
@@ -577,7 +581,7 @@ print()
 
 input7=" "
 while input7!="a":
-    input7=input("press a to continue ")
+    input7=input("press a to continue  ")
 print()    
 print("'You are here at last... Welcome to the Lair of Death.'")
 print("'I have been watching you... all this time. You are but a pawn in my game.'")
@@ -590,7 +594,7 @@ print()
 
 input7=" "
 while input7!="a":
-    input7=input("press a to continue ")
+    input7=input("press a to continue  ")
 print()    
 print("You realize this is who you have been hearing the whole time.")
 print("You have been playing their games....")
@@ -599,17 +603,17 @@ print()
 
 input7=" "
 while input7!="a":
-    input7=input("press a to continue ")
+    input7=input("press a to continue  ")
 print()    
 print("A faint red glow begins to emanate from the shadows. You feel the ground tremble beneath you.")
-print("Suddenly, the shadows form a menacing figure: the Demon of Terror, its eyes glowing with malice.")
+print("Suddenly, the shadows form a menacing figure: the Demon of Terror, its eyes glowing with malice 👹")
 print("A tall menacing shadow looms over you, its face concealed with a large, dark hood, its bony long fingers point at you mockingly.")
 print("It steps forward, its voice echoing in your mind, 'Prepare yourself.'")
 print("You feel your heart racing. There's no turning back.")
 print()
 input7=" "
 while input7!="a":
-    input7=input("press a to continue ")
+    input7=input("press a to continue  ")
 
 print("The anticipation grows as you ready yourself for the fight. The room is still... for now.")
 print("You can feel the Demon of Terror preparing for the final showdown...")
@@ -619,7 +623,7 @@ print()
 
 input7=" "
 while input7!="a":
-    input7=input("press a to continue ")
+    input7=input("press a to continue  ")
 
 ############################################################################################################################
 playerhealth = 100
@@ -632,11 +636,11 @@ backpack = ["shield", "golden sword", "healing potion", "armor", "magical staff"
 
 print()
 print(f"Your health: {playerhealth}")
-print(f"FinalBoss's health: {bosshealth}")
+print(f"final boss's health: {bosshealth}")
 print()
 
 while input7!="a":
-    input7=input("press a to continue ")
+    input7=input("press a to continue  ")
 
 print("The evil monster cackles, 'You'll never get out alive!'")
 print("Before you can react, it extends its long arm in front of it, and effortlessly causes a giant boulder to explode, sending small bits of rocks flying at you.")
@@ -646,11 +650,11 @@ print("You take 5 damage")
 playerhealth -= 5
 print()
 print(f"Your health: {playerhealth}")
-print(f"FinalBoss's health: {bosshealth}")
+print(f"final boss's health: {bosshealth}")
 print()
 input7=" "
 while input7!="a":
-    input7=input("press a to continue ")
+    input7=input("press a to continue  ")
 
 print("The monster laughs at its victory, but you know this is far from over. You seize the opportunity to:")
 print("a. Attack by throwing a brick at the monster.")
@@ -691,7 +695,7 @@ def playerturn(backpack):
         damage = random.randint(20, 30)  
         print()
         print("With a roar, you raise your Golden Sword high and slash downward with all your strength!")
-        print(f"The sword glows as it strikes, dealing {damage} damage to FinalBoss. The ground shakes beneath you.")
+        print(f"The sword glows as it strikes, dealing {damage} damage to final boss. The ground shakes beneath you.")
         print()
 
         bosshealth -= damage
@@ -718,17 +722,17 @@ def playerturn(backpack):
             print()
             print("You reach for your healing potion... but it's gone. You’re on your own now.")
     else:
-        print("You hesitate, torn between your options. The FinalBoss grows impatient...")
+        print("You hesitate, torn between your options. The final boss grows impatient...")
 
 def bossturn():
     global playerhealth, bosshealth
     print()
-    print("FinalBoss stands tall, its eyes gleaming with malevolent intent. The room feels colder with every passing second.")
+    print("final boss stands tall, its eyes gleaming with malevolent intent. The room feels colder with every passing second.")
 
     input82 = random.choice(["attack", "special"])  
     if input82 == "special":
         print()
-        print(f"With a terrifying roar, FinalBoss conjures dark energy, its form warping with the power of {special_ability}!")
+        print(f"With a terrifying roar, final boss conjures dark energy, its form warping with the power of {special_ability}!")
         damage = random.randint(15, 30) 
         playerhealth -= damage
         print(f"Shadowy tendrils surge toward you, wrapping around you with crushing force! {damage} damage!")
@@ -741,14 +745,14 @@ def bossturn():
         damage = random.randint(5, 21) 
         playerhealth -= damage
         print()
-        print(f"FinalBoss raises its fist and smashes it down with terrifying force. You feel the impact as {damage} damage shakes your body!")
+        print(f"final boss raises its fist and smashes it down with terrifying force. You feel the impact as {damage} damage shakes your body!")
         list4=["The demon mocks you, grinning as you stagger back.",
             "It seems the demon is enjoying your suffering.",
             "The shadowy figure of the demon looms over you, relentless."]
         print(random.choice(list4))
 
         
-    print(f"FinalBoss attacks, you take {damage} damage.")
+    print(f"final boss attacks, you take {damage} damage.")
     
 def isalive(health):
     return health > 0
@@ -759,25 +763,25 @@ def gameloop():
     while isalive(playerhealth) and isalive(bosshealth):
         print()
         print(f"Your health: {playerhealth}")
-        print(f"FinalBoss's health: {bosshealth}")
+        print(f"final boss's health: {bosshealth}")
 
         if playerhealth < 20 and "healing potion" not in backpack:
             print()
             print("Your vision begins to blur, and every breath feels like a struggle.")
-            print("The FinalBoss takes notice, its grin widening as it prepares to finish you off.")
+            print("The final boss takes notice, its grin widening as it prepares to finish you off.")
             print("The battle is almost over... You need to win this to get out!")
 
         playerturn(backpack)
 
         if not isalive(bosshealth):
             print()
-            print(f"With a final, devastating blow, you defeat FinalBoss! Victory is yours!")
+            print(f"With a final, devastating blow, you defeat final boss! Victory is yours!")
             print("You fall to your knees, exhausted. The darkness around you seems to fade, but you're too weary to celebrate.")
             break
 
         if not isalive(playerhealth):
             print()
-            print("You fall to the ground, your body numb with fatigue. The FinalBoss stands victorious over you.")
+            print("You fall to the ground, your body numb with fatigue. The final boss stands victorious over you.")
             print("You feel the cold grip of darkness closing in. It's over.")
             break
 
@@ -788,26 +792,26 @@ gameloop()
 print()
 input7=" "
 while input7!="a":
-    input7=input("press a to continue ")
+    input7=input("press a to continue  ")
 
 print()
 print("Suddenly, you hear a loud, guttural growl. The ground shakes violently.")
-print("You look up to see the FinalBoss's body rising from the ground, a dark aura surrounding it.")
+print("You look up to see the final boss's body rising from the ground, a dark aura surrounding it.")
 print("It is not dead... not yet. The monster’s eyes glow with a malevolent light as it laughs maniacally.")
 print("'You thought you had defeated me? Foolish mortal. I am eternal! I will crush you!'")
 
 print()
-print("The FinalBoss lurches forward, its claws ready to rip you apart.")
+print("The final boss lurches forward, its claws ready to rip you apart.")
 
 print()
 print("You're barely hanging on. The monster is relentless, and you can feel your strength fading.")
 print("But you know you can't give up. This is the final battle. You must end it.")
 print()
-print("With a burst of desperation and strength, you throw your sword at the FinalBoss!")
+print("With a burst of desperation and strength, you throw your sword at the final boss!")
 
-print(f"The sword flies through the air and lands with a mighty strike")
+print("The sword flies through the air and lands with a mighty strike")
 
 print()
-print("With a final, dramatic roar, the FinalBoss is pierced through the heart by your sword!")
+print("With a final, dramatic roar, the final boss has been pierced through the heart by your sword!")
 print("It collapses to the ground, defeated for good.")
-print("You’ve won. You’ve survived the Lair of Death.")
+print("You’ve won. You’ve survived the maze of secrets.")
