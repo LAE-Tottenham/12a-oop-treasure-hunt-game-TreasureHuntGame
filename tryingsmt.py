@@ -35,6 +35,10 @@ class Monster():
         self.y=y
         self.hp=hp
 
+
+
+
+enchanted=False
 curses.noecho()
 curses.cbreak()
 stdscr.keypad(True)
@@ -59,6 +63,18 @@ treasurey=2
 treasurechar='⧆'
 playerchar='𖠋'
 
+
+
+def randomgen(worldnum):
+    x=random.randint(2,maxx-1)
+    y=random.randint(2,maxy-1)
+
+
+    
+    return x,y
+
+
+
 def checkenemy():
     global playing,ex,ey,playerx,playery
     if playerx==ex and playery==ey:
@@ -66,14 +82,14 @@ def checkenemy():
         stdscr.addstr(maxy//2,0,"YOU DIED...")
         stdscr.refresh()
         stdscr.clear()
-        if 'Enchanted Sword' not in rucksack:
+        if 'magical sword' not in rucksack:
             stdscr.addstr(5,0,"You weren't prepared enough...")
             stdscr.refresh()
         time.sleep(3)
         stdscr.clear()
         playing=False
     else:
-        if 'Enchanted Sword' in rucksack:
+        if 'magical sword' in rucksack:
             diff=0.9
         else :
             diff=0.9
@@ -124,7 +140,20 @@ def move(c,worldnum):
             playerx=makevalid(playerx,0,maxx-1)
             playery=makevalid(playery,1,maxy-2)
             
+        
 
+def moveinforest(c):
+        global playerx,playery
+        if c == "a":
+            playerx -= 1
+        elif c =="w":
+            playery -= 1
+        elif c == "s":
+            playery +=1
+        elif c == "d":
+            playerx+=1
+        playerx=makevalid(playerx,0,maxx-1)
+        playery=makevalid(playery,0,maxy-1)
 appleeaten=False
 applex=apple.xpos
 appley=apple.ypos
@@ -165,11 +194,10 @@ def init():
     skully=skull1.ypos
     skullchar=skull1.character
 
-count3=0
 
 def introwoods():
-    global count3
-    if count3<1:
+    count=0
+    if playerx==15 and playery==8 and stage!=3 and count>1:
         introstring='Sickly trees are all over this forest, their branches smothered in white leaves...'
         charslow2(introstring)
         clearline()
@@ -179,48 +207,37 @@ def introwoods():
         clearline()
         ostring='OBJECTIVE: Find the end of the woods'
         charslow2(ostring)
-        count3 +=1
-count=0
-count1=0
+        count+=1
+
 def monstertime():
-    global health,playing,monstery,monsterx,monsterdef,treasurex,treasurey,treasurechar,monsterhp,count,count1
+    global health,playing,monstery,monsterx,monsterdef,treasurex,treasurey,treasurechar
+    global monsterhp
+    count=0
     if playerx== monsterx and playery== monstery+1:
-            if count<1:
-                if 'Enchanted Sword' in rucksack:
-                    monstring="A dark and foreboding grin lies on the creature's face..."
-                    charslow2(monstring)
-                    monstring2="Yet you don't feel afraid at all...                       "
-                    charslow2(monstring2)
-                    monstring3="You stand upright sword in hand, and prepare yourself for battle..."
-                    charslow2(monstring3)
-                    clearline()
-                    count+=1
-                    curses.init_pair(1,curses.COLOR_WHITE,curses.COLOR_BLUE)
-                    stdscr.addstr(12,10,f"Opponent HP:{monsterhp}",curses.color_pair(1))
-                    monstring4="Click f to FIGHT!"
-                    charslow2(monstring4)
-                    time.sleep(2)
-                    clearline()
-                    count+=1
-                else:
-                    monstringy="A dark and foreboding grin lies on the creature's face, and you feel a pit form in your stomach..."
-                    charslow2(monstringy)
-                    monstringy2="Are you sure you're prepared enough for this....?                                                     "
-                    charslow2(monstringy2)
-                    curses.init_pair(1,curses.COLOR_WHITE,curses.COLOR_BLUE)
-                    stdscr.addstr(12,10,f"Opponent HP:{monsterhp}",curses.color_pair(1))
-                    clearline()
-                    monstring5="Click f to FIGHT!"
-                    charslow2(monstring5)
-                    count+=1
+            while count<1:
+                monstring="A dark and foreboding grin lies on the creature's face..."
+                charslow2(monstring)
+                monstring2="Yet you don't feel afraid at all...                       "
+                charslow2(monstring2)
+                monstring3="You stand upright sword in hand, and prepare yourself for battle..."
+                charslow2(monstring3)
+                clearline()
+                count+=1
+                curses.init_pair(1,curses.COLOR_WHITE,curses.COLOR_BLUE)
+                stdscr.addstr(12,10,f"Opponent HP:{monsterhp}",curses.color_pair(1))
+                monstring4="Click f to FIGHT!"
+                charslow2(monstring4)
+                time.sleep(2)
+                clearline()
+                count+=1
             
-    while monsterhp>0 and count>0:
-        fight=stdscr.getch()
-        if fight==ord('f') and health>50:
+    while monsterhp>0:
+        fight=stdscr.getkey()
+        if fight=='f' and health>50:
             monsterhp-=20
             stdscr.addstr(12,10,f"Opponent HP:{monsterhp}",curses.color_pair(1))
             stdscr.refresh()
-        elif fight==ord('f') and health <= 50 and health >30 and 'apple' in rucksack:
+        elif fight=='f' and health <= 50 and health >30 and 'apple' in rucksack:
             curses.init_pair(2,curses.COLOR_WHITE,curses.COLOR_RED)
             stdscr.addstr(12,0,f'HP:{health}',curses.color_pair(2))
             fightstring="Your body isn't able to fight.. your health is too low..."
@@ -237,24 +254,8 @@ def monstertime():
                 charslow2(fightstringw)
                 fightstringw1='Now.. Press f to FIGHT!'
                 charslow(fightstringw1)
-            else:
-                curses.init_pair(2,curses.COLOR_WHITE,curses.COLOR_RED)
-                stdscr.addstr(12,0,f'HP:{health}',curses.color_pair(2))
-                fightstring3a='Your health is too low for battle... You should have never tried to find this place...'
-                charslow2(fightstring3a)
-                fightstring4a='You utter your last words as you are struck by this surge of magic...                    '
-                charslow2(fightstring4a)
-                fightstring5a='You remember the words of the wizard amidst your last breaths            '
-                charslow2(fightstring5a)
-                clearline()
-                fightstring6a='You died.... :('
-                charslow2(fightstring6a)
-                time.sleep(2)
-                stdscr.clear()
-                stdscr.refresh()
-                playing=False
 
-        elif fight==ord('f') and health<=50 and health>30 :
+        elif fight=='f' and health<=50 and health>30 :
             curses.init_pair(2,curses.COLOR_WHITE,curses.COLOR_RED)
             stdscr.addstr(12,0,f'HP:{health}',curses.color_pair(2))
             fightstring3='Your health is too low for battle... You should have never tried to find this place...'
@@ -273,24 +274,11 @@ def monstertime():
         
     if monsterhp==0:
         monsterdef=True
-        if count<1:
-            stdscr.addstr(monstery,monsterx,'##')
-            fightstringa='You have slain the monster! His remains lie on the ground, the magical powers still emanating...'
-            charslow2(fightstringa)
-            fightstringb="But that's besides the point! The treasure is right there! Go and pick it up !"
-            charslow2(fightstringb)
-            count1+=1
-        if 'Enchanted sword' not in rucksack:
-            fightstringc='Something feels wrong... Your insides feel wrecked...                                                 '
-            charslow2(fightstringc)
-            fightstringc1="Maybe you really do need magic to protect you in this place...                                          "
-            charslow2(fightstringc1)
-            fightstringc2='You collapse and never wake, the treasure a few steps away...                                             '
-            charslow2(fightstringc2)
-            playing=False
-            stdscr.clear()
-            stdscr.refresh()
-
+        stdscr.addstr(monstery,monsterx,'##')
+        fightstringa='You have slain the monster! His remains lie on the ground, the magical powers still emanating...'
+        charslow2(fightstringa)
+        fightstringb="But that's besides the point! The treasure is right there! Go and pick it up !"
+        charslow2(fightstringb)
         if world3[playery][playerx]== treasurechar:
             fightstringc='What are you waiting for ?! Interact to Open it !'
             charslow(fightstringc)
@@ -300,20 +288,18 @@ def monstertime():
                    
                     
 
-gold=False
+
 def interactworld3():
-    global treasurex,treasurey,gold
+    global treasurex,treasurey
     if playery==treasurey and playerx==treasurex :
-        fightstringh='You have found artefacts that look thousands of years old... Gold and valuables overflow 👑, 🪙 ,🧭... '
+        fightstringh='You have found artefacts that look thousands of years old... Gold and valuables overflow'
         charslow2(fightstringh)
-        fightstringh1='You have found the treasure! You drop to your knees out of drowsiness and exhaustion, but most importantly'
-        charslow2(fightstringh1)
-        fightstringh2='... relief that you made it out alive!                                                                          '
-        charslow2(fightstringh2)
-        fightstringh3="CONGRATULATIONS... YOUHAVE COMPLETED SIRINE'S TREASURE HUNT GAME !!!!!!🎉🥳🎈"
-        playing=False
-        
-        
+        stdscr.addch(treasurex-1,treasurey,'👑')
+        stdscr.refresh()
+        stdscr.addch(treasurex+1,treasurey,'🪙')
+        stdscr.refresh()
+        stdscr.addch(treasurex,treasurey+1,'🧭')
+        stdscr.refresh()
     else:
         fightstringh1='Nothing to see here'
         charslow2(fightstringh1)
@@ -354,12 +340,10 @@ def inittreasure():
     playery=8
 
 def drawtreasure():
-    for i in range(0,3):
+    for i in range(0,maxy):
         for j in range(maxx):
             stdscr.addch(i,j,world3[i][j])
-    for i in range(4,maxy):
-        for j in range(maxx):
-            stdscr.addch(i,j,world3[i][j])
+    stdscr.refresh()
 
     for j in range(0,6):
         stdscr.addch(9,j,'🌳')
@@ -367,23 +351,13 @@ def drawtreasure():
         stdscr.addch(9,j,'🌳')
     for j in range(0,monsterx-1):
         stdscr.addch(monstery,j,'🔥')
-    for j in range(monsterx+2,17):
+    for j in range(monsterx+1,17):
         stdscr.addch(monstery,j,'🔥')
-    stdscr.addstr(monstery,30,'                 ')
     stdscr.refresh()
     if monsterhp>0:
         stdscr.addch(monstery,monsterx,monsterchar)
     else:
         stdscr.addstr(monstery,monsterx,'##')
-    if gold==True:
-        stdscr.addch(treasurey,treasurex-1,'👑')
-        stdscr.refresh()
-        stdscr.addch(treasurey,treasurex+1,'🪙')
-        stdscr.refresh()
-        stdscr.addch(treasurey+1,treasurex,'🧭')
-        stdscr.refresh()
-    else:
-        pass
     stdscr.refresh()
     stdscr.addch(treasurey,treasurex,treasurechar)
     stdscr.refresh()
@@ -457,7 +431,15 @@ def drawoods():
     stdscr.addch(0,15,'𖦹')
     stdscr.addch(9,15,'𖦹')
 
-            
+               
+    
+
+
+
+#mainc='sirine'
+#m=Player(mainc,100,15,9,[])
+#playerx=m.x
+#playery=m.y
 def charslow(string):
         for char in string:
             curses.delay_output(60)
@@ -467,7 +449,7 @@ def charslow2(string):
         x=-1
         for char in string:
             x+=1
-            curses.delay_output(65)
+            curses.delay_output(20)
             stdscr.addstr(11,x,char)
             stdscr.refresh()
 
@@ -510,14 +492,10 @@ while cba:
     i=interact
     And finally, click q to quit the game!
     """
-    fifth_string='Oh,,, and just a clue to help! Interact with this man 𐀪 to get a lot of useful information!'
     charslow(fourth_string)
-    charslow(fifth_string)
-    sixth_string='And finally, Good Luck!!!'
-    charslow(sixth_string)
     time.sleep(5)
     stdscr.clear()
-    se
+    cba=False
 
 main=Player('player')
 rucksack=main.rucksack
@@ -566,13 +544,21 @@ def interactworld2():
             stage=3
             inittreasure()
 
+            
+    
+        
+
+
+
+
+
 times=0
 h1open=0
 h2opent=0
 
 
 def interactworld():
-    global appley,applex,appleeaten,key1disc,key2disc,key1x,key1char,key1y,key2x,key2y,key2char,house1y,house1x,house2y,house2x,chesty,chestx,rucksack,times,h1open,h2opent,enchanted,skully,skullx,skullchar,eat,health,wizardy,wizardx,wizardchar
+    global appley,applex,appleeaten,key1disc,key2disc,key1x,key1char,key1y,key2x,key2y,key2char,house1y,house1x,house2y,house2x,chesty,chestx,rucksack,times,h1open,h2opent,enchanted,skully,skullx,skullchar,eat,health
     if playery==appley and playerx==applex:
         eat=' '
         reply2=additem('apple')
@@ -704,7 +690,7 @@ def interactworld():
             elif h2opent>=1:
                 stdscr.addch(11,0,'This is an unlocked shed revealing nothing inside')
         else:
-            clearline()
+            stdscr.addch(11,0,'                                                                                                                  ')
     if playerx==15 and playery==2:
         stdscr.addch(11,0,'Do you wish to enter the whistling woods?Y/N                     ')
         woods=stdscr.getkey()
@@ -729,31 +715,13 @@ def interactworld():
             stdscr.clear()
             stdscr.refresh()
             initinforest()
-        else:
-            clearline()
-    if playery==wizardy and playerx==wizardx:
-        wizstring='Greetings, traveller... I am a wizard who has lived here for many blue moons...'
-        charslow2(wizstring)
-        wizstring2='I take it you have traversed many lands to find the ancient treasure of this place...'
-        charslow2(wizstring2)
-        wizstring3='Well... I have good news for you... I am the most knowledgeable on this topic for lands to come...'
-        charslow2(wizstring3)
-        wizstring4='Firstly, any swirly sign just signifies the border between the lands...                              '
-        charslow2(wizstring4)
-        wizstring5='And secondly, to find the treasure you must go through the woods... I have not found any other passage...'
-        charslow2(wizstring5)
-        wizstring6='And thirdly, under no circumstances must you come even close to any creature in this place                 '
-        charslow2(wizstring6)
-        wizstring7="Every traveller that has ever entered the woods has never come back. And I think, no I know this is because they weren't protected" 
-        charslow2(wizstring7)
-        wizstring8='Protected by what you ask? Well protected by magic... Some sort of magic must be within your person to protect you                   '
-        charslow2(wizstring8)
-        wizstring9='Now, unfortunately I have not got the resources to help give you enchantment, but I am aware there is a magical item located here...'
-        charslow2(wizstring9)
-        wizstring10="So I suggest you start looking around, and I'm sure with due time you will find it                                                         " 
-        charslow2(wizstring10)
-        wizstring11="Oh, and be careful... Do not embark on your journey when your health is less than half... you will regret it..."
-        charslow2(wizstring11)
+            
+
+            
+
+
+    
+
 
 
 def printrucksack():
@@ -763,72 +731,52 @@ def printrucksack():
         stdscr.addstr(rucksacky,rucksackx,'Your rucksack contains:'+str(rucksack))
         stdscr.refresh()
         time.sleep(2)
-
-enchanted=False
-stage=0
-playing=True
-if enchanted:
-    if stage==3:
-        stdscr.clear()
-        stdscr.refresh()
-        inittreasure()
         
-    else:
-        stdscr.clear()
-        stdscr.refresh()
-        initinforest()        
-else:
-    stdscr.clear()
+def poo():
+    global playing,count
+    try:
+        c=stdscr.getkey()
+    except:
+        c=' '
+    if c =='i':
+        interactworld3()
+    elif c in 'asdw':
+        stdscr.addstr(playery,playerx,playerchar)
+        time.sleep(1)         
+    elif c=='i':
+        interactworld3()
+    elif c == 'q':
+        playing=False
+    drawtreasure()
+    checkintreasure()
+    monstertime()
     stdscr.refresh()
+enchanted=True
+stage=3
+playing=True
+if enchanted==False:
     init()
+elif enchanted== True and stage!=3:
+    stdscr.clear()
+    con='on'
+    initinforest()
+    playing=True
+elif stage==3:
+    stdscr.clear()
+    con='on'
+    playing=False
+    inittreasure()
+    playing=True
 
-while playing: 
-    stdscr.addstr(12,0,f"HP:{health}")
-    stdscr.refresh()
-    if enchanted:
-        if stage==3:
-                try:
-                    c=stdscr.getkey()
-                except:
-                    c=' '
-                if c in 'asdw':
-                    move(c,'world3')   
-                elif c== 'q':
-                    playing=False
-                elif c =='i':
-                    interactworld3()
-                elif c=='p':
-                   printrucksack()
-                drawtreasure()
-                checkintreasure() 
-                monstertime()
-        else:
-            try:
-                c=stdscr.getkey()
-            except:
-                c=' '
-            if c in 'asdw':
-                move(c,world2)
-            elif c== 'q':
-                playing=False
-            elif c =='i':
-                interactworld2()
-            elif c=='p':
-               printrucksack()
-            drawoods()
-            introwoods()
-            checkenemy()
-            
-    else:
-        try:
-            c=stdscr.getkey()
-        except:
-            c=' '
+while playing:
+    try:
+        c=stdscr.getkey()
+    except:
+        c=' '
+    
+    if enchanted==False and stage!=3:
         if c in 'asdw':
             move(c,world)
-            stdscr.clear()
-            draw()
-              
         elif c== 'q':
             playing=False
         elif c =='i':
@@ -836,9 +784,50 @@ while playing:
         elif c=='p':
             printrucksack()
         draw()
+                
+    if enchanted==True and stage != 3:
+        
+        if c in 'asdw':
+            clearline()
+            move(c,world2)
+        elif c== 'q':
+            playing=False
+        elif c=='i':
+            interactworld2()
+        elif c=='p':
+            printrucksack()
+        drawoods()
+        introwoods()
+        checkenemy()
 
-curses.init_pair(5,curses.COLOR_WHITE,curses.COLOR_MAGENTA)         
-stdscr.addstr(maxy//2,maxx//2,'Thank you for playing!',curses.color_pair(5))       
+    while stage==3 and enchanted==True:
+        inittreasure()
+        count=0
+        if c =='i':
+            interactworld3()
+        elif c in 'asdw':
+            stdscr.addstr(playery,playerx,playerchar)
+            time.sleep(1)         
+        elif c=='i':
+            interactworld3()
+        elif c == 'q':
+            playing=False
+        drawtreasure()
+        checkintreasure()
+        monstertime()
+        stdscr.refresh()
+        
+            
+           
+        
+        
+if playing==False and con !='on':
+    stdscr.clear()
+    stdscr.addstr(5,15,'Thanks for playing!')
+    time.sleep(2)
+    stdscr.clear()
+if playing==False and con=='on':
+    pass
 stdscr.getkey()
 curses.nocbreak()
 stdscr.keypad(False)
